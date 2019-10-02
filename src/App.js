@@ -11,18 +11,17 @@ class App extends React.Component {
         {title: 'HTML', isDone: false, priority: 'hi'},
         {title: 'CSS', isDone: false, priority: 'low'},
         {title: 'React', isDone: false, priority: 'low' },
-        {title: 'React', isDone: false, priority: 'medium'},
 
     ];
-
      filterValue = 'Active';
+
     render = () => {
         return (
             <div className="App">
                 < div className="todoList">
                     < TodoListHeader/>
                     < TodoListTasks tasks ={this.tasks} />
-                    < TodoListFooter/>
+                    < TodoListFooter filterValue={this.filterValue} />
                 </div>
             </div>
         );
