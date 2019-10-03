@@ -13,7 +13,7 @@ class App extends React.Component {
         {title: 'React', isDone: false, priority: 'low'},
 
     ];
-    filterValue = 'Active';
+    filterValue = 'All';
     render = () => {
         return (
             <div className="App">
