@@ -7,10 +7,10 @@ import TodoListFooter from './TodoListFooter';
 
 class App extends React.Component {
     tasks = [
-        {title: 'JS', isDone: true, priority: 'hi'},
-        {title: 'HTML', isDone: false, priority: 'hi'},
+        {title: 'JS', isDone: true, priority: 'high'},
+        {title: 'HTML', isDone: false, priority: 'high'},
         {title: 'CSS', isDone: false, priority: 'low'},
-        {title: 'React', isDone: false, priority: 'low'},
+        {title: 'React', isDone: true, priority: 'high'},
 
     ];
     filterValue = 'Active';
