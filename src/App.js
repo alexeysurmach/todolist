@@ -11,26 +11,35 @@ class App extends React.Component {
 
     state = {
         tasks: [
-            {title: 'JS', isDone: true, priority: 'low'},
-            {title: 'HTML', isDone: true, priority: 'low'},
-            {title: 'CSS', isDone: true, priority: 'low'},
-            {title: 'React', isDone: false, priority: 'low'}
+            {id: 1, title: 'JS', isDone: true, priority: 'low'},
+            {id: 2, title: 'HTML', isDone: true, priority: 'low'},
+            {id: 3, title: 'CSS', isDone: true, priority: 'low'},
+            {id: 4, title: 'React', isDone: false, priority: 'low'}
         ],
 
         filterValue: 'All'
     };
+    nextTaskId = 5;
 
 
     AddTask = (newTitle) => {
 
-        let newTask = {title: newTitle, isDone: true, priority: 'low'}
+        let newTask = {
+            title: newTitle,
+            isDone: true,
+            priority: 'low',
+            id: this.nextTaskId
+        };
+
+        this.nextTaskId++;
+
         let newTAsks = [...this.state.tasks, newTask];
         this.setState({
             tasks: newTAsks
         });
 
 
-    }
+    };
 
     changeFilterValue = (newFilterValue) => {
         this.setState({
@@ -49,7 +58,7 @@ class App extends React.Component {
         this.setState({
             tasks: newTasks
         })
-    }
+    };
 
 
 
