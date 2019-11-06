@@ -3,26 +3,32 @@
 }
 
 .todoList {
-    width: 500px;
+    width: 300px;
     margin: 0 auto;
 }
 
-.todoList > div {
-    padding: 10px;
-}
-
-.todoList-task {
-
+.todoList div {
+    padding: 5px;
 }
 
 .todoList-task.done {
-    opacity: 0.5;
+    opacity: 0.5
 }
-
 
 .filter-active {
-    background-color: dodgerblue;
+    background-color: cornflowerblue;
 }
+
+button {
+    font-size: 15px;
+}
+
+input {
+    font-size: 15px;
+}
+
 .error {
     border-color: red;
 }
+
+

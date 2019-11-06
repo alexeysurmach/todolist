@@ -1,22 +1,49 @@
 import React from 'react';
 import './App.css';
 
+
 class TodoListTask extends React.Component {
 
-    onIsDoneChanged = (e) => {
-        this.props.chengeStatus(this.props.task, e.currentTarget.checked);
+    state ={
+        editMode: false
+    };
+
+    activatedEditMode = () => {
+        this.setState({editMode: true})
+    };
+    deactivateEditMode = () => {
+        this.setState({editMode: false})
     };
 
 
+    onIsDoneChanged = (e) => {
+        this.props.change(this.props.task.id, e.currentTarget.checked);
+    };
+
+    onTitleChanged = (e) => {
+        this.props.changeTitle(this.props.task.id, e.currentTarget.value);
+    };
+
     render = () => {
-        const taskClassName = this.props.task.isDone ? 'todoList-task done' : 'todoList-task';
+
+        const taskClass = this.props.task.isDone ? 'todoList-task done' : 'todoList-task';
+
         return (
-
-            <div className={taskClassName}>
-                <input onChange={this.onIsDoneChanged} type="checkbox" checked={this.props.task.isDone}/>
-                <span>{this.props.task.id}, {this.props.task.title}, {this.props.task.priority}</span>
+            <div className={taskClass}>
+                <input onClick={this.onIsDoneChanged} type="checkbox"
+                       checked={this.props.task.isDone}/>
+                {this.state.editMode
+                    ? <input
+                        onBlur={this.deactivateEditMode}
+                        autoFocus={true}
+                        value={this.props.task.title}
+                        onChange={this.onTitleChanged}
+                    /> :
+                    <span onClick={this.activatedEditMode}>
+						{this.props.task.id} - {this.props.task.title}
+					</span>
+                }, priority: {this.props.task.priority}
             </div>
-
         );
     }
 }

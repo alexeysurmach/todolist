@@ -1,54 +1,57 @@
 import React from 'react';
-import './App.css';
 
 class TodoListHeader extends React.Component {
+
     state = {
         error: false,
-        title: ''
+        title: ""
     };
 
-    onTitleChanged = (e) => {
-        this.setState({title: e.currentTarget.value})
-    }
-    onKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            {
-                this.onAddTaskClick()
-            }
-        }
-
-
-    }
     onAddTaskClick = () => {
         let newTitle = this.state.title;
-
-        if (newTitle !== '') {
-            this.props.AddTask(newTitle);
-            this.setState({error: false, title: ''})
-        } else {
-            this.setState({error: true})
+        if (newTitle.trim() === ''){
+            this.setState({error:true});
+        }else{
+            this.setState({error: false});
+            this.setState({title: ""});
+            this.props.addTask(newTitle);
         }
+    };
 
+    onTaskTitleChanged = (e) => {
+        this.setState({
+            error: false,
+            title: e.currentTarget.value
+        })
+    };
+
+
+    oneAddTaskKeyPress = (e) => {
+        if(e.key === 'Enter'){
+            this.onAddTaskClick();
+        }
     };
 
 
     render = () => {
-        const inputClassName = this.state.error === true ? 'error' : '';
         return (
             <div className="todoList-header">
                 <h3 className="todoList-header__title">What to Learn</h3>
                 <div className="todoList-newTaskForm">
-                    <input className={inputClassName}
+                    <input ref={this.newTaskTitleRef}
+                           type="text"
+                           placeholder="New task name"
+                           className={this.state.error ? "error" : ''}
+                           onChange={this.onTaskTitleChanged}
+                           onKeyPress={this.oneAddTaskKeyPress}
                            value={this.state.title}
-                           type="text" placeholder="New task name"
-                           onKeyPress={this.onKeyPress}
-                           onChangeCapture={this.onTitleChanged}
                     />
                     <button onClick={this.onAddTaskClick}>Add</button>
                 </div>
             </div>
-        )
+        );
     }
-};
+}
+
 export default TodoListHeader;
 
